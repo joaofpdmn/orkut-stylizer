@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import './assets/css/reset.css';
+import './assets/css/style.css';
+import React, { useState } from "react";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import StartScreen from "./Pages/StartScreen";
+import MainScreen from './Pages/MainScreen';
 
 function App() {
+  const [name, setName] = useState('');
+  const [status, setStatus] = useState('');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<StartScreen setName={setName} setStatus={setStatus}/>} />
+        <Route path='/main' element={<MainScreen name={name} status={status}/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
